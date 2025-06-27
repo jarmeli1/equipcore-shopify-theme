@@ -16,10 +16,10 @@
     <div class="featured-products__grid featured-products__grid--{{ section.settings.columns_desktop }}">
       {%- liquid
         assign collection = collections[section.settings.collection]
-        if collection == blank
-          assign products = collection.products
-        else
+        if collection != blank
           assign products = collection.products | slice: 0, section.settings.products_to_show
+        else
+          assign products = blank
         endif
       -%}
 
