@@ -1,0 +1,250 @@
+{{ 'section-testimonials.css' | asset_url | stylesheet_tag }}
+
+<section class="testimonials color-{{ section.settings.color_scheme }} section-spacing">
+  <div class="container">
+    {%- if section.settings.heading != blank or section.settings.description != blank -%}
+      <div class="testimonials__header">
+        {%- if section.settings.heading != blank -%}
+          <h2 class="testimonials__heading h1">{{ section.settings.heading | escape }}</h2>
+        {%- endif -%}
+        {%- if section.settings.description != blank -%}
+          <div class="testimonials__description">{{ section.settings.description }}</div>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <div class="testimonials__wrapper">
+      <div class="testimonials__container testimonials__container--{{ section.settings.layout }}">
+        {%- for block in section.blocks -%}
+          {%- case block.type -%}
+            {%- when 'testimonial' -%}
+              <div class="testimonial" {{ block.shopify_attributes }}>
+                <div class="testimonial__content">
+                  {%- if block.settings.rating > 0 -%}
+                    <div class="testimonial__rating">
+                      {%- for i in (1..5) -%}
+                        <span class="star {% if i <= block.settings.rating %}star--filled{% endif %}">★</span>
+                      {%- endfor -%}
+                    </div>
+                  {%- endif -%}
+                  
+                  {%- if block.settings.quote != blank -%}
+                    <blockquote class="testimonial__quote">
+                      {{ block.settings.quote }}
+                    </blockquote>
+                  {%- endif -%}
+                  
+                  <div class="testimonial__author">
+                    {%- if block.settings.author_image != blank -%}
+                      <div class="testimonial__author-image">
+                        {{ block.settings.author_image | image_url: width: 80 | image_tag:
+                          loading: 'lazy',
+                          width: 80,
+                          height: 80
+                        }}
+                      </div>
+                    {%- endif -%}
+                    
+                    <div class="testimonial__author-info">
+                      {%- if block.settings.author_name != blank -%}
+                        <h4 class="testimonial__author-name">{{ block.settings.author_name | escape }}</h4>
+                      {%- endif -%}
+                      {%- if block.settings.author_title != blank -%}
+                        <p class="testimonial__author-title">{{ block.settings.author_title | escape }}</p>
+                      {%- endif -%}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {%- when '@app' -%}
+              {% render block %}
+          {%- endcase -%}
+        {%- endfor -%}
+      </div>
+      
+      {%- if section.settings.layout == 'carousel' and section.blocks.size > 1 -%}
+        <div class="testimonials__navigation">
+          <button type="button" class="testimonials__nav testimonials__nav--prev" aria-label="Previous testimonial">‹</button>
+          <button type="button" class="testimonials__nav testimonials__nav--next" aria-label="Next testimonial">›</button>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{%- if section.settings.layout == 'carousel' -%}
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const container = document.querySelector('.testimonials__container--carousel');
+      const prevBtn = document.querySelector('.testimonials__nav--prev');
+      const nextBtn = document.querySelector('.testimonials__nav--next');
+      
+      if (!container || !prevBtn || !nextBtn) return;
+      
+      let currentIndex = 0;
+      const testimonials = container.querySelectorAll('.testimonial');
+      const totalTestimonials = testimonials.length;
+      
+      function showTestimonial(index) {
+        testimonials.forEach((testimonial, i) => {
+          testimonial.style.display = i === index ? 'block' : 'none';
+        });
+      }
+      
+      function nextTestimonial() {
+        currentIndex = (currentIndex + 1) % totalTestimonials;
+        showTestimonial(currentIndex);
+      }
+      
+      function prevTestimonial() {
+        currentIndex = (currentIndex - 1 + totalTestimonials) % totalTestimonials;
+        showTestimonial(currentIndex);
+      }
+      
+      nextBtn.addEventListener('click', nextTestimonial);
+      prevBtn.addEventListener('click', prevTestimonial);
+      
+      // Initialize
+      showTestimonial(0);
+      
+      // Auto-rotate if enabled
+      {%- if section.settings.auto_rotate -%}
+        setInterval(nextTestimonial, {{ section.settings.rotation_speed | times: 1000 }});
+      {%- endif -%}
+    });
+  </script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Testimonials",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "What Our Clients Say",
+      "label": "Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "options": [
+        {
+          "value": "grid",
+          "label": "Grid"
+        },
+        {
+          "value": "carousel",
+          "label": "Carousel"
+        }
+      ],
+      "default": "grid",
+      "label": "Layout"
+    },
+    {
+      "type": "checkbox",
+      "id": "auto_rotate",
+      "default": false,
+      "label": "Auto-rotate testimonials",
+      "info": "Only applies to carousel layout"
+    },
+    {
+      "type": "range",
+      "id": "rotation_speed",
+      "min": 3,
+      "max": 10,
+      "step": 1,
+      "unit": "s",
+      "default": 5,
+      "label": "Rotation speed"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "options": [
+        {
+          "value": "background-1",
+          "label": "Background 1"
+        },
+        {
+          "value": "background-2",
+          "label": "Background 2"
+        },
+        {
+          "value": "inverse",
+          "label": "Inverse"
+        }
+      ],
+      "default": "background-2",
+      "label": "Color scheme"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "quote",
+          "default": "<p>The equipment from EquipCore has transformed my recovery process. The quality is exceptional and the results speak for themselves.</p>",
+          "label": "Quote"
+        },
+        {
+          "type": "range",
+          "id": "rating",
+          "min": 0,
+          "max": 5,
+          "step": 1,
+          "default": 5,
+          "label": "Rating",
+          "info": "Set to 0 to hide rating"
+        },
+        {
+          "type": "text",
+          "id": "author_name",
+          "default": "John Smith",
+          "label": "Author name"
+        },
+        {
+          "type": "text",
+          "id": "author_title",
+          "default": "Physical Therapist, PT",
+          "label": "Author title"
+        },
+        {
+          "type": "image_picker",
+          "id": "author_image",
+          "label": "Author image"
+        }
+      ]
+    },
+    {
+      "type": "@app"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonials",
+      "blocks": [
+        {
+          "type": "testimonial"
+        },
+        {
+          "type": "testimonial"
+        },
+        {
+          "type": "testimonial"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,185 @@
+.hero-banner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: linear-gradient(135deg, #2563EB 0%, #1E4CAF 100%);
+}
+
+.hero-banner__media {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.hero-banner__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, var(--overlay-opacity, 0.3));
+  z-index: 1;
+}
+
+.hero-banner__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.hero-banner__content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.hero-banner__text-wrapper {
+  max-width: 60rem;
+  padding: 4rem 0;
+  width: 100%;
+}
+
+/* Content alignment */
+.hero-banner__text-wrapper--left {
+  text-align: left;
+  margin-right: auto;
+}
+
+.hero-banner__text-wrapper--center {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-banner__text-wrapper--right {
+  text-align: right;
+  margin-left: auto;
+}
+
+.hero-banner__heading {
+  margin-bottom: 2rem;
+  color: #FFFFFF;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  font-weight: 600;
+}
+
+.hero-banner__subheading {
+  font-size: 1.8rem;
+  margin-bottom: 3rem;
+  color: #FFFFFF;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  opacity: 0.95;
+}
+
+/* Content position */
+.hero-banner--top {
+  align-items: flex-start;
+}
+
+.hero-banner--middle {
+  align-items: center;
+}
+
+.hero-banner--bottom {
+  align-items: flex-end;
+}
+
+.hero-banner__buttons {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.hero-banner__text-wrapper--left .hero-banner__buttons {
+  justify-content: flex-start;
+}
+
+.hero-banner__text-wrapper--center .hero-banner__buttons {
+  justify-content: center;
+}
+
+.hero-banner__text-wrapper--right .hero-banner__buttons {
+  justify-content: flex-end;
+}
+
+.hero-banner .button {
+  min-width: 16rem;
+}
+
+/* Height variants */
+.hero-banner--small {
+  min-height: 40rem;
+}
+
+.hero-banner--medium {
+  min-height: 60rem;
+}
+
+.hero-banner--large {
+  min-height: 80rem;
+}
+
+.hero-banner--adapt {
+  min-height: auto;
+}
+
+@media screen and (max-width: 768px) {
+  .hero-banner--small {
+    min-height: 30rem;
+  }
+
+  .hero-banner--medium {
+    min-height: 40rem;
+  }
+
+  .hero-banner--large {
+    min-height: 50rem;
+  }
+
+  .hero-banner__text-wrapper {
+    padding: 2rem 0;
+  }
+
+  .hero-banner__heading {
+    font-size: 2.4rem;
+  }
+
+  .hero-banner__subheading {
+    font-size: 1.6rem;
+  }
+}
+
+/* Subtle pattern overlay for visual interest */
+.hero-banner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+    radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 60px 60px;
+  z-index: 0;
+}
+
+.hero-banner__content {
+  z-index: 2;
+}
+
+/* App blocks */
+.hero-banner__app-block {
+  position: relative;
+  z-index: 3;
+  margin-top: 2rem;
+}

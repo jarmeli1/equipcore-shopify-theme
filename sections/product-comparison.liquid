@@ -1,0 +1,248 @@
+{{ 'section-product-comparison.css' | asset_url | stylesheet_tag }}
+
+<div class="product-comparison section">
+  <div class="container">
+    {%- if section.settings.heading != blank -%}
+      <div class="section-header text-center">
+        <h2 class="section-title">{{ section.settings.heading }}</h2>
+        {%- if section.settings.description != blank -%}
+          <div class="section-subtitle">{{ section.settings.description }}</div>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <div class="comparison-table-wrapper">
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th class="comparison-table__feature">Features</th>
+            {%- for block in section.blocks -%}
+              {%- if block.settings.product != blank -%}
+                <th class="comparison-table__product">
+                  <div class="comparison-product">
+                    {%- if block.settings.product.featured_image -%}
+                      {{ block.settings.product.featured_image | image_url: width: 200 | image_tag:
+                        loading: 'lazy',
+                        class: 'comparison-product__image',
+                        alt: block.settings.product.featured_image.alt | escape
+                      }}
+                    {%- endif -%}
+                    <h3 class="comparison-product__title">{{ block.settings.product.title }}</h3>
+                    <div class="comparison-product__price">
+                      {%- if block.settings.product.compare_at_price > block.settings.product.price -%}
+                        <span class="price price--on-sale">
+                          <span class="price__regular">
+                            <span class="visually-hidden">Regular price</span>
+                            {{ block.settings.product.compare_at_price | money }}
+                          </span>
+                          <span class="price__sale">
+                            <span class="visually-hidden">Sale price</span>
+                            {{ block.settings.product.price | money }}
+                          </span>
+                        </span>
+                      {%- else -%}
+                        <span class="price">
+                          {{ block.settings.product.price | money }}
+                        </span>
+                      {%- endif -%}
+                    </div>
+                  </div>
+                </th>
+              {%- endif -%}
+            {%- endfor -%}
+          </tr>
+        </thead>
+        <tbody>
+          {%- for i in (1..10) -%}
+            {%- assign feature_key = 'feature_' | append: i -%}
+            {%- if section.settings[feature_key] != blank -%}
+              <tr>
+                <td class="comparison-table__feature-name">{{ section.settings[feature_key] }}</td>
+                {%- for block in section.blocks -%}
+                  {%- if block.settings.product != blank -%}
+                    {%- assign value_key = 'feature_' | append: i | append: '_value' -%}
+                    <td class="comparison-table__value">
+                      {%- if block.settings[value_key] != blank -%}
+                        {{ block.settings[value_key] }}
+                      {%- else -%}
+                        <span class="comparison-na">—</span>
+                      {%- endif -%}
+                    </td>
+                  {%- endif -%}
+                {%- endfor -%}
+              </tr>
+            {%- endif -%}
+          {%- endfor -%}
+          <tr class="comparison-table__actions">
+            <td class="comparison-table__feature-name"><strong>Add to Cart</strong></td>
+            {%- for block in section.blocks -%}
+              {%- if block.settings.product != blank -%}
+                <td class="comparison-table__value">
+                  <a href="{{ block.settings.product.url }}" class="button button--primary button--small">
+                    View Product
+                  </a>
+                </td>
+              {%- endif -%}
+            {%- endfor -%}
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Product comparison",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "Compare Our Resistance Bands",
+      "label": "Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "default": "<p>Find the perfect resistance band for your rehabilitation needs</p>",
+      "label": "Description"
+    },
+    {
+      "type": "text",
+      "id": "feature_1",
+      "label": "Feature 1",
+      "default": "Material"
+    },
+    {
+      "type": "text",
+      "id": "feature_2",
+      "label": "Feature 2",
+      "default": "Resistance Levels"
+    },
+    {
+      "type": "text",
+      "id": "feature_3",
+      "label": "Feature 3",
+      "default": "Length"
+    },
+    {
+      "type": "text",
+      "id": "feature_4",
+      "label": "Feature 4",
+      "default": "Weight"
+    },
+    {
+      "type": "text",
+      "id": "feature_5",
+      "label": "Feature 5",
+      "default": "Latex-Free"
+    },
+    {
+      "type": "text",
+      "id": "feature_6",
+      "label": "Feature 6"
+    },
+    {
+      "type": "text",
+      "id": "feature_7",
+      "label": "Feature 7"
+    },
+    {
+      "type": "text",
+      "id": "feature_8",
+      "label": "Feature 8"
+    },
+    {
+      "type": "text",
+      "id": "feature_9",
+      "label": "Feature 9"
+    },
+    {
+      "type": "text",
+      "id": "feature_10",
+      "label": "Feature 10"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        },
+        {
+          "type": "text",
+          "id": "feature_1_value",
+          "label": "Feature 1 value"
+        },
+        {
+          "type": "text",
+          "id": "feature_2_value",
+          "label": "Feature 2 value"
+        },
+        {
+          "type": "text",
+          "id": "feature_3_value",
+          "label": "Feature 3 value"
+        },
+        {
+          "type": "text",
+          "id": "feature_4_value",
+          "label": "Feature 4 value"
+        },
+        {
+          "type": "text",
+          "id": "feature_5_value",
+          "label": "Feature 5 value"
+        },
+        {
+          "type": "text",
+          "id": "feature_6_value",
+          "label": "Feature 6 value"
+        },
+        {
+          "type": "text",
+          "id": "feature_7_value",
+          "label": "Feature 7 value"
+        },
+        {
+          "type": "text",
+          "id": "feature_8_value",
+          "label": "Feature 8 value"
+        },
+        {
+          "type": "text",
+          "id": "feature_9_value",
+          "label": "Feature 9 value"
+        },
+        {
+          "type": "text",
+          "id": "feature_10_value",
+          "label": "Feature 10 value"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product comparison",
+      "blocks": [
+        {
+          "type": "product"
+        },
+        {
+          "type": "product"
+        },
+        {
+          "type": "product"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

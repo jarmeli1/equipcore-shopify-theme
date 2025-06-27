@@ -1,0 +1,230 @@
+.featured-products {
+  position: relative;
+}
+
+.section-spacing {
+  padding-top: var(--spacing-sections);
+  padding-bottom: var(--spacing-sections);
+}
+
+.featured-products__header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.featured-products__heading {
+  margin-bottom: 1.5rem;
+}
+
+.featured-products__description {
+  font-size: 1.8rem;
+  opacity: 0.8;
+  max-width: 60rem;
+  margin: 0 auto;
+}
+
+.featured-products__grid {
+  display: grid;
+  gap: var(--grid-spacing-horizontal);
+  margin-bottom: 4rem;
+}
+
+.featured-products__grid--2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.featured-products__grid--3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.featured-products__grid--4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+@media screen and (max-width: 1024px) {
+  .featured-products__grid--4 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .featured-products__grid--2,
+  .featured-products__grid--3,
+  .featured-products__grid--4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .featured-products__header {
+    margin-bottom: 3rem;
+  }
+  
+  .featured-products__description {
+    font-size: 1.6rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .featured-products__grid--2,
+  .featured-products__grid--3,
+  .featured-products__grid--4 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Product Card Styles */
+.product-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--color-background);
+  border-radius: var(--card-border-radius);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.product-card__image-wrapper {
+  position: relative;
+  padding-bottom: 100%; /* 1:1 aspect ratio */
+  overflow: hidden;
+  background: #f5f5f5;
+}
+
+.product-card__image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover .product-card__image {
+  transform: scale(1.05);
+}
+
+.product-card__badge {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background: var(--color-accent);
+  color: white;
+  padding: 0.5rem 1rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  border-radius: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.product-card__info {
+  padding: 2rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-card__vendor {
+  font-size: 1.2rem;
+  color: var(--color-text);
+  opacity: 0.6;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+
+.product-card__title {
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+  flex-grow: 1;
+}
+
+.product-card__title a {
+  color: var(--color-text);
+  text-decoration: none;
+  display: block;
+  line-height: 1.4;
+}
+
+.product-card__title a:hover {
+  color: var(--color-accent);
+}
+
+.product-card__price {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.price {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.price--compare {
+  text-decoration: line-through;
+  opacity: 0.6;
+  font-size: 1.6rem;
+  font-weight: normal;
+}
+
+.product-card__rating {
+  display: flex;
+  gap: 0.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.star {
+  color: #ddd;
+  font-size: 1.6rem;
+}
+
+.star--filled {
+  color: #f59e0b;
+}
+
+.product-card__quick-add {
+  margin-top: auto;
+}
+
+.button--small {
+  padding: 1rem 2rem;
+  font-size: 1.4rem;
+  width: 100%;
+}
+
+/* Placeholder styles */
+.product-card--placeholder {
+  opacity: 0.5;
+}
+
+.placeholder-svg {
+  width: 100%;
+  height: 100%;
+  fill: #e5e5e5;
+}
+
+/* Footer */
+.featured-products__footer {
+  text-align: center;
+}
+
+/* Default Shopify translations */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

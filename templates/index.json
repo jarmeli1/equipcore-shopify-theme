@@ -1,20 +1,36 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
-    "main": {
-      "type": "hello-world",
-      "settings": {}
+    "hero_banner": {
+      "type": "hero-banner",
+      "settings": {
+        "heading": "Professional Rehabilitation Equipment",
+        "subheading": "<p>Evidence-based tools for effective patient recovery and professional therapy practice</p>",
+        "button_label": "Shop Equipment",
+        "button_link": "/collections/all",
+        "show_medical_disclaimer": true,
+        "height": "medium",
+        "color_scheme": "background-1"
+      }
+    },
+    "featured_products": {
+      "type": "featured-products",
+      "settings": {
+        "heading": "Featured Physical Therapy Equipment",
+        "description": "<p>Professional-grade rehabilitation tools trusted by therapists worldwide</p>",
+        "collection": "all",
+        "products_to_show": 4,
+        "columns_desktop": "4",
+        "show_vendor": true,
+        "show_rating": true,
+        "show_quick_add": true,
+        "show_view_all": true,
+        "enable_app_blocks": true,
+        "color_scheme": "background-1"
+      }
     }
   },
   "order": [
-    "main"
+    "hero_banner",
+    "featured_products"
   ]
 }

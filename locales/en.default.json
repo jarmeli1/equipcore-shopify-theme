@@ -48,5 +48,21 @@
     "submit": "Search",
     "no_results_html": "No results found for {{ terms }}",
     "results_for_html": "{{ count }} results found for {{ terms }}"
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Add to cart",
+      "on_sale": "Sale"
+    }
+  },
+  "sections": {
+    "featured_products": {
+      "view_all": "View all products"
+    }
+  },
+  "general": {
+    "onboarding": {
+      "product_title": "Example Product Title"
+    }
   }
 }

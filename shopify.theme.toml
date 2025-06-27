@@ -1,0 +1,8 @@
+[environments.default]
+store = "equipcore-dev.myshopify.com"
+
+[environments.dev]
+store = "equipcore-dev.myshopify.com"
+
+[environments.production]
+store = "equipcore.myshopify.com"

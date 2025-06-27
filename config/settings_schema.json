@@ -1,82 +1,345 @@
 [
   {
     "name": "theme_info",
-    "theme_name": "Skeleton",
-    "theme_version": "0.1.0",
-    "theme_author": "Shopify",
+    "theme_name": "EquipCore Therapy",
+    "theme_version": "1.0.0",
+    "theme_author": "EquipCore",
     "theme_documentation_url": "https://help.shopify.com/manual/online-store/themes",
     "theme_support_url": "https://support.shopify.com/"
   },
   {
-    "name": "t:general.typography",
+    "name": "Colors",
     "settings": [
       {
         "type": "header",
-        "content": "t:general.fonts"
+        "content": "Color schemes"
       },
       {
-        "type": "font_picker",
-        "id": "type_primary_font",
-        "default": "work_sans_n4",
-        "label": "t:general.primary"
+        "type": "color",
+        "id": "colors_text",
+        "label": "Text color",
+        "default": "#0A1229"
       },
+      {
+        "type": "color",
+        "id": "colors_background",
+        "label": "Background color",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "color",
+        "id": "colors_background_secondary",
+        "label": "Secondary background",
+        "default": "#F8FAFC"
+      },
+      {
+        "type": "color",
+        "id": "colors_button",
+        "label": "Button color",
+        "default": "#2563EB"
+      },
+      {
+        "type": "color",
+        "id": "colors_button_text",
+        "label": "Button text color",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "header",
+        "content": "Accent colors"
+      },
+      {
+        "type": "color",
+        "id": "colors_accent",
+        "label": "Accent color",
+        "default": "#3B82F6",
+        "info": "Used for highlights and special elements"
+      },
+      {
+        "type": "color",
+        "id": "colors_success",
+        "label": "Success color",
+        "default": "#10B981",
+        "info": "Used for success messages and indicators"
+      },
+      {
+        "type": "color",
+        "id": "colors_warning",
+        "label": "Warning color",
+        "default": "#F59E0B",
+        "info": "Used for warning messages"
+      },
+      {
+        "type": "color",
+        "id": "colors_error",
+        "label": "Error color",
+        "default": "#EF4444",
+        "info": "Used for error messages and validation"
+      }
     ]
   },
   {
-    "name": "t:general.layout",
+    "name": "Typography",
     "settings": [
       {
-        "type": "select",
-        "id": "max_page_width",
-        "label": "t:labels.page_width",
-        "options": [
-          {
-            "value": "90rem",
-            "label": "t:options.page_width.narrow"
-          },
-          {
-            "value": "110rem",
-            "label": "t:options.page_width.wide"
-          }
-        ],
-        "default": "90rem"
+        "type": "header",
+        "content": "Fonts"
+      },
+      {
+        "type": "font_picker",
+        "id": "type_header_font",
+        "default": "assistant_n6",
+        "label": "Heading font",
+        "info": "Inter 600 weight for headings"
+      },
+      {
+        "type": "font_picker",
+        "id": "type_body_font",
+        "default": "assistant_n4",
+        "label": "Body font",
+        "info": "Roboto 400 weight for body text"
       },
       {
         "type": "range",
-        "id": "min_page_margin",
-        "min": 10,
+        "id": "font_body_scale",
+        "min": 80,
+        "max": 130,
+        "step": 5,
+        "unit": "%",
+        "label": "Body font size scale",
+        "default": 100
+      },
+      {
+        "type": "range",
+        "id": "font_heading_scale",
+        "min": 80,
+        "max": 130,
+        "step": 5,
+        "unit": "%",
+        "label": "Heading size scale",
+        "default": 100
+      }
+    ]
+  },
+  {
+    "name": "Layout",
+    "settings": [
+      {
+        "type": "select",
+        "id": "page_width",
+        "label": "Page width",
+        "options": [
+          {
+            "value": "1200",
+            "label": "1200px"
+          },
+          {
+            "value": "1400",
+            "label": "1400px"
+          },
+          {
+            "value": "1600",
+            "label": "1600px"
+          }
+        ],
+        "default": "1400"
+      },
+      {
+        "type": "range",
+        "id": "spacing_sections",
+        "min": 0,
         "max": 100,
-        "step": 1,
+        "step": 4,
         "unit": "px",
-        "label": "t:labels.page_margin",
+        "label": "Space between sections",
+        "default": 40
+      },
+      {
+        "type": "range",
+        "id": "spacing_grid_horizontal",
+        "min": 4,
+        "max": 40,
+        "step": 4,
+        "unit": "px",
+        "label": "Grid horizontal spacing",
+        "default": 20
+      },
+      {
+        "type": "range",
+        "id": "spacing_grid_vertical",
+        "min": 4,
+        "max": 40,
+        "step": 4,
+        "unit": "px",
+        "label": "Grid vertical spacing",
         "default": 20
       }
     ]
   },
   {
-    "name": "t:general.colors",
+    "name": "Product cards",
     "settings": [
       {
-        "type": "color",
-        "id": "background_color",
-        "default": "#FFFFFF",
-        "label": "t:labels.background"
+        "type": "select",
+        "id": "card_style",
+        "label": "Card style",
+        "options": [
+          {
+            "value": "card",
+            "label": "Card with border"
+          },
+          {
+            "value": "simple",
+            "label": "Simple"
+          }
+        ],
+        "default": "card"
       },
       {
-        "type": "color",
-        "id": "foreground_color",
-        "default": "#333333",
-        "label": "t:labels.foreground"
+        "type": "select",
+        "id": "card_text_alignment",
+        "label": "Text alignment",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "center",
+            "label": "Center"
+          }
+        ],
+        "default": "left"
       },
       {
-        "type": "range",
-        "id": "input_corner_radius",
-        "min": 0,
-        "max": 10,
-        "step": 1,
-        "unit": "px",
-        "label": "t:labels.input_corner_radius",
-        "default": 4
+        "type": "checkbox",
+        "id": "show_secondary_image",
+        "default": false,
+        "label": "Show second image on hover"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_vendor",
+        "default": true,
+        "label": "Show vendor"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_rating",
+        "default": true,
+        "label": "Show product rating"
+      }
+    ]
+  },
+  {
+    "name": "Buttons",
+    "settings": [
+      {
+        "type": "select",
+        "id": "button_style",
+        "label": "Button style",
+        "options": [
+          {
+            "value": "rounded",
+            "label": "Rounded"
+          },
+          {
+            "value": "square",
+            "label": "Square"
+          }
+        ],
+        "default": "rounded"
+      },
+      {
+        "type": "checkbox",
+        "id": "buttons_shadow",
+        "default": false,
+        "label": "Add shadow to buttons"
+      }
+    ]
+  },
+  {
+    "name": "Social media",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Social accounts"
+      },
+      {
+        "type": "text",
+        "id": "social_facebook_link",
+        "label": "Facebook",
+        "info": "https://facebook.com/equipcore"
+      },
+      {
+        "type": "text",
+        "id": "social_instagram_link",
+        "label": "Instagram",
+        "info": "https://instagram.com/equipcore"
+      },
+      {
+        "type": "text",
+        "id": "social_youtube_link",
+        "label": "YouTube",
+        "info": "https://youtube.com/equipcore"
+      },
+      {
+        "type": "text",
+        "id": "social_tiktok_link",
+        "label": "TikTok",
+        "info": "https://tiktok.com/@equipcore"
+      },
+      {
+        "type": "text",
+        "id": "social_twitter_link",
+        "label": "X (Twitter)",
+        "info": "https://twitter.com/equipcore"
+      },
+      {
+        "type": "text",
+        "id": "social_pinterest_link",
+        "label": "Pinterest",
+        "info": "https://pinterest.com/equipcore"
+      }
+    ]
+  },
+  {
+    "name": "Currency format",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Currency codes"
+      },
+      {
+        "type": "paragraph",
+        "content": "Cart and checkout prices always show currency codes. Example: $12.00 USD."
+      },
+      {
+        "type": "checkbox",
+        "id": "currency_code_enabled",
+        "label": "Show currency codes",
+        "default": true
+      }
+    ]
+  },
+  {
+    "name": "Medical disclaimer",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Medical disclaimer settings"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_medical_disclaimer",
+        "label": "Show medical disclaimer",
+        "default": true
+      },
+      {
+        "type": "richtext",
+        "id": "medical_disclaimer_text",
+        "label": "Disclaimer text",
+        "default": "<p>The products sold on this website are intended for use under the guidance of a healthcare professional. Please consult with your physician, physical therapist, or other qualified healthcare provider before using any of our products. These products are not intended to diagnose, treat, cure, or prevent any disease.</p>"
       }
     ]
   }

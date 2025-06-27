@@ -1,0 +1,265 @@
+{{ 'section-hero-banner.css' | asset_url | stylesheet_tag }}
+
+<div class="hero-banner hero-banner--{{ section.settings.height }} hero-banner--{{ section.settings.desktop_content_position }} color-{{ section.settings.color_scheme }}">
+  {%- if section.settings.image != blank -%}
+    <div class="hero-banner__media"
+      {%- if section.settings.overlay_opacity > 0 -%}
+        style="--overlay-opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }}"
+      {%- endif -%}
+    >
+      {{ section.settings.image | image_url: width: 3840 | image_tag:
+        loading: 'lazy',
+        width: section.settings.image.width,
+        height: section.settings.image.height,
+        class: 'hero-banner__image',
+        sizes: '100vw',
+        widths: '375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840'
+      }}
+      {%- if section.settings.overlay_opacity > 0 -%}
+        <div class="hero-banner__overlay"></div>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+  
+  <div class="hero-banner__content container">
+    <div class="hero-banner__text-wrapper hero-banner__text-wrapper--{{ section.settings.desktop_content_alignment }}">
+      {%- if section.settings.heading != blank -%}
+        <h1 class="hero-banner__heading h0">
+          {{ section.settings.heading | escape }}
+        </h1>
+      {%- endif -%}
+      
+      {%- if section.settings.subheading != blank -%}
+        <div class="hero-banner__subheading">
+          {{ section.settings.subheading }}
+        </div>
+      {%- endif -%}
+      
+      {%- if section.settings.button_label != blank -%}
+        <div class="hero-banner__buttons">
+          <a
+            {% if section.settings.button_link != blank %}
+              href="{{ section.settings.button_link }}"
+            {% else %}
+              role="link" aria-disabled="true"
+            {% endif %}
+            class="button button--primary"
+          >
+            {{ section.settings.button_label | escape }}
+          </a>
+          
+          {%- if section.settings.button_label_2 != blank -%}
+            <a
+              {% if section.settings.button_link_2 != blank %}
+                href="{{ section.settings.button_link_2 }}"
+              {% else %}
+                role="link" aria-disabled="true"
+              {% endif %}
+              class="button button--secondary"
+            >
+              {{ section.settings.button_label_2 | escape }}
+            </a>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% if section.settings.show_medical_disclaimer and settings.show_medical_disclaimer %}
+  <div class="container">
+    <div class="medical-disclaimer">
+      {{ settings.medical_disclaimer_text }}
+    </div>
+  </div>
+{% endif %}
+
+{%- if section.settings.enable_app_blocks -%}
+  {%- for block in section.blocks -%}
+    {%- case block.type -%}
+      {%- when '@app' -%}
+        <div class="hero-banner__app-block" {{ block.shopify_attributes }}>
+          {% render block %}
+        </div>
+    {%- endcase -%}
+  {%- endfor -%}
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Hero banner",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Background image"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 10,
+      "unit": "%",
+      "label": "Image overlay opacity",
+      "default": 30,
+      "info": "Add a dark overlay to improve text readability"
+    },
+    {
+      "type": "select",
+      "id": "height",
+      "options": [
+        {
+          "value": "adapt",
+          "label": "Adapt to image"
+        },
+        {
+          "value": "small",
+          "label": "Small"
+        },
+        {
+          "value": "medium",
+          "label": "Medium"
+        },
+        {
+          "value": "large",
+          "label": "Large"
+        }
+      ],
+      "default": "medium",
+      "label": "Section height"
+    },
+    {
+      "type": "select",
+      "id": "desktop_content_position",
+      "options": [
+        {
+          "value": "top",
+          "label": "Top"
+        },
+        {
+          "value": "middle",
+          "label": "Middle"
+        },
+        {
+          "value": "bottom",
+          "label": "Bottom"
+        }
+      ],
+      "default": "middle",
+      "label": "Desktop content position"
+    },
+    {
+      "type": "select",
+      "id": "desktop_content_alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center",
+      "label": "Desktop content alignment"
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "Professional Physical Therapy Equipment",
+      "label": "Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "subheading",
+      "default": "<p>Recover faster with clinical-grade equipment designed for home use</p>",
+      "label": "Subheading"
+    },
+    {
+      "type": "header",
+      "content": "Buttons"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "default": "Shop Now",
+      "label": "First button label"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "First button link"
+    },
+    {
+      "type": "text",
+      "id": "button_label_2",
+      "label": "Second button label",
+      "info": "Leave blank to show only one button"
+    },
+    {
+      "type": "url",
+      "id": "button_link_2",
+      "label": "Second button link"
+    },
+    {
+      "type": "header",
+      "content": "Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_medical_disclaimer",
+      "default": true,
+      "label": "Show medical disclaimer below hero"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_app_blocks",
+      "default": true,
+      "label": "Enable app blocks"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "options": [
+        {
+          "value": "background-1",
+          "label": "Background 1"
+        },
+        {
+          "value": "background-2",
+          "label": "Background 2"
+        },
+        {
+          "value": "inverse",
+          "label": "Inverse"
+        }
+      ],
+      "default": "background-1",
+      "label": "Color scheme",
+      "info": "Visible when no image is selected"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@app"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero banner"
+    }
+  ]
+}
+{% endschema %}

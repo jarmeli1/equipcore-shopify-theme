@@ -1,0 +1,165 @@
+.product-comparison {
+  padding: 4rem 0;
+}
+
+.section-header {
+  margin-bottom: 4rem;
+}
+
+.section-title {
+  margin-bottom: 1rem;
+}
+
+.section-subtitle {
+  font-size: 1.8rem;
+  color: rgba(var(--color-text), 0.7);
+}
+
+.comparison-table-wrapper {
+  overflow-x: auto;
+  margin: 0 -2rem;
+  padding: 0 2rem;
+}
+
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0;
+  background: var(--color-white);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.comparison-table th,
+.comparison-table td {
+  padding: 1.5rem;
+  text-align: center;
+  border-bottom: 1px solid #E5E7EB;
+  vertical-align: middle;
+}
+
+.comparison-table th {
+  background-color: var(--color-background);
+  font-weight: 600;
+  color: var(--color-primary-dark);
+}
+
+.comparison-table__feature {
+  text-align: left;
+  background-color: var(--color-primary-light);
+  color: var(--color-white);
+  font-weight: 600;
+  min-width: 20rem;
+}
+
+.comparison-table__feature-name {
+  text-align: left;
+  font-weight: 500;
+  background-color: var(--color-background);
+}
+
+.comparison-table__product {
+  min-width: 18rem;
+}
+
+.comparison-product {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.comparison-product__image {
+  width: 8rem;
+  height: 8rem;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.comparison-product__title {
+  font-size: 1.4rem;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.comparison-product__price {
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.price--on-sale .price__regular {
+  text-decoration: line-through;
+  color: rgba(var(--color-text), 0.6);
+  margin-right: 0.5rem;
+}
+
+.price__sale {
+  color: #DC2626;
+}
+
+.comparison-table__value {
+  font-size: 1.4rem;
+}
+
+.comparison-na {
+  color: rgba(var(--color-text), 0.4);
+  font-style: italic;
+}
+
+.comparison-table__actions td {
+  padding: 2rem 1.5rem;
+  background-color: var(--color-background);
+}
+
+.button--small {
+  padding: 0.8rem 1.6rem;
+  font-size: 1.4rem;
+  min-width: auto;
+}
+
+/* Responsive design */
+@media screen and (max-width: 768px) {
+  .comparison-table-wrapper {
+    margin: 0 -1rem;
+    padding: 0 1rem;
+  }
+  
+  .comparison-table th,
+  .comparison-table td {
+    padding: 1rem;
+    font-size: 1.3rem;
+  }
+  
+  .comparison-table__feature,
+  .comparison-table__product {
+    min-width: 15rem;
+  }
+  
+  .comparison-product__image {
+    width: 6rem;
+    height: 6rem;
+  }
+  
+  .comparison-product__title {
+    font-size: 1.2rem;
+  }
+}
+
+/* Hover effects */
+.comparison-table tbody tr:hover {
+  background-color: rgba(var(--color-primary), 0.02);
+}
+
+/* Accessibility */
+.comparison-table th[scope] {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+}
+
+.comparison-table__feature {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+}
