@@ -63,6 +63,16 @@
   "general": {
     "onboarding": {
       "product_title": "Example Product Title"
-    }
+    },
+    "404": "404 Page",
+    "blog": "Blog",
+    "collection": "Collection",
+    "custom_section": "Custom Section",
+    "header": "Header",
+    "page": "Page"
+  },
+  "labels": {
+    "background": "Background Image",
+    "menu": "Main Menu"
   }
 }
